@@ -14,26 +14,38 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  position: relative;
 }
 
 #source {
+  position: relative; /* Make this container relative for absolute positioning of buttons */
+  max-width: 90%; /* Adjusted for responsiveness */
+  max-height: 80vh; /* Adjusted for responsiveness */
   display: flex;
+  justify-content: center;
   align-items: center;
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 button {
+  position: absolute; /* Position buttons absolutely within the relative container */
   background-color: #4caf50;
   color: white;
   border: none;
   padding: 10px 20px;
-  margin: 0 10px;
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
+  z-index: 1; /* Ensure buttons are above the image */
+  top: 50%; /* Center vertically */
+  transform: translateY(-50%); /* Adjust for vertical centering */
+}
+
+#prev {
+  left: 20px;
+}
+
+#next {
+  right: 20px;
 }
 
 button:hover {
@@ -41,17 +53,13 @@ button:hover {
 }
 
 #imgContainer {
-  max-width: 500px;
-  max-height: 300px;
+  display: block;
   width: 100%;
-  height: auto;
+  height: auto; /* Maintain aspect ratio */
   border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-#source img {
-  display: block;
-}
 #title {
   position: absolute;
   bottom: 20px;
@@ -63,4 +71,46 @@ button:hover {
   padding: 10px 20px;
   border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1; /* Ensure title is above other content */
+}
+
+@media (max-width: 768px) {
+  #source {
+    max-width: 95%; /* Slightly wider for small screens */
+    max-height: 90vh; /* Adjust height for smaller screens */
+    padding: 10px; /* Reduce padding */
+    position: relative; /* Ensure relative positioning for absolute children */
+  }
+
+  button {
+    font-size: 14px; /* Smaller font size */
+    padding: 8px 15px; /* Smaller padding */
+  }
+
+  #prev {
+    left: 10px;
+  }
+
+  #next {
+    right: 10px;
+  }
+
+  #title {
+    font-size: 18px; /* Smaller font size */
+    bottom: 10px;
+    right: 10px;
+    padding: 8px 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  #title {
+    font-size: 16px; /* Even smaller font size for very small screens */
+    padding: 6px 10px;
+  }
+
+  button {
+    font-size: 12px; /* Smaller font size for very small screens */
+    padding: 6px 10px;
+  }
 }
